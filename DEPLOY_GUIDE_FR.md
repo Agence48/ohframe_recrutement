@@ -15,6 +15,7 @@ Ce guide t'accompagne **pas à pas**.
    - **anon key** → `NEXT_PUBLIC_SUPABASE_ANON_KEY`
    - **service_role** → `SUPABASE_SERVICE_ROLE_KEY`
    - **JWT secret** → `SUPABASE_JWT_SECRET`
+   - **Video upload secret** → `VIDEO_UPLOAD_SECRET` (clé aléatoire > 32 caractères utilisée pour signer les uploads)
 2. Dans **SQL Editor**, colle le contenu de `supabase/schema.sql` et exécute.
 3. (Optionnel) Crée un **bucket** `videos` si tu veux stocker les vidéos.
 
@@ -46,7 +47,7 @@ Va sur http://localhost:3000
 
 ## 9) Notes sécurité & prod
 - `jobs`/`candidates` ont RLS permissif pour MVP. **À restreindre** par `org_id/user_id`.
-- Ajoute une **signature HMAC** pour le token mobile vidéo (cf. TODO dans `/api/upload/video`).
+- La signature HMAC pour l’upload vidéo est gérée côté serveur via `VIDEO_UPLOAD_SECRET`.
 - Active `redirectTo` du magic link vers `/dashboard`.
 - Ajoute monitoring (Logflare/Better Stack) et métriques.
 
